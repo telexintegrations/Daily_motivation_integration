@@ -23,7 +23,7 @@ The **Daily Motivation Bot** sends motivational quotes daily to inspire and upli
             "app_name": "Daily Motivation Bot",
             "app_description": "Daily Motivation Bot\nSends motivational quotes daily to inspire and uplift team members, helping to maintain a positive and productive work environment. The bot automatically fetches and delivers a new motivational quote each day, encouraging teamwork and boosting morale.",
             "app_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSowU4UV3Sncxajn1Smd8UMnTaN9Mm6mtk5NA&usqp=CAU",
-            "app_url": "https://telex-motivation-integration.onrender.com",
+            "app_url": "https://daily-motivation-integration.onrender.com",
             "background_color": "#fff"
         },
         "is_active": true,
@@ -45,7 +45,7 @@ The **Daily Motivation Bot** sends motivational quotes daily to inspire and upli
             }
         ],
         "target_url": "",
-        "tick_url": "https://telex-motivation-integration.onrender.com/tick"
+        "tick_url": "https://daily-motivation-integration.onrender.com/tick"
     }
 }
 ```
