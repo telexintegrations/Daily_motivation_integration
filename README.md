@@ -96,7 +96,7 @@ check for the json details
 ## Deployment
 
 The integration is deployed on render.com and can be accessed here:  
-[Live Deployment](https://telex-motivation-integration.onrender.com)
+[Live Deployment](https://daily-motivation-integration.onrender.com)
 
 ### 3. Telex Integration
 - Add the integration JSON URL in your Telex organization.
