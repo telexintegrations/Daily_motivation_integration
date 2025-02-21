@@ -79,7 +79,13 @@ pip install -r requirements.txt
 uvicorn src:app --reload
 ```
 
-### 2. Access the Integration JSON
+### 2. Test locally
+```sh
+pytest -v
+```
+
+
+### 3. Access the Integration JSON
 Open your browser and navigate to: 
 ```sh
 http://127.0.0.1:8000/integration.json
