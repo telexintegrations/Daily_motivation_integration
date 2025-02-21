@@ -51,9 +51,8 @@ async def get_motivation():
     quote_url = "https://zenquotes.io/api/random/motivational"
     try:
         async with httpx.AsyncClient() as client:
-            print("result")
             result = await client.get(quote_url)
-            # print("result")
+            print("result")
             if result.status_code == 200:
                 quote_data: dict = result.json()[0]
                 quote = quote_data.get(
