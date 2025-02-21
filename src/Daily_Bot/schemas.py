@@ -11,6 +11,3 @@ class MonitorPayload(BaseModel):
     channel_id: str
     return_url: str
     settings: List[Setting]
-    
-class AutomatePayload(BaseModel):
-    cron_expression: str
