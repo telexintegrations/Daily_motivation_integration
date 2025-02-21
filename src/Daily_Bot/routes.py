@@ -47,15 +47,18 @@ def get_integration_json(request: Request):
 
 
 async def get_motivation():
-    quote_url = "https://api.quotable.io/random?tags=motivational"
+    print("here")
+    quote_url = "https://zenquotes.io/api/random/motivational"
     try:
         async with httpx.AsyncClient() as client:
+            print("result")
             result = await client.get(quote_url)
+            # print("result")
             if result.status_code == 200:
-                quote_data: dict = result.json()
+                quote_data: dict = result.json()[0]
                 quote = quote_data.get(
-                    "content", "Stay positive and keep moving forward.")
-                author = quote_data.get("authorSlug", "Unknown")
+                    "q", "Stay positive and keep moving forward.")
+                author = quote_data.get("a", "Unknown")
                 return f"{quote} \n by {author}"
             return "Error fetching daily quote."
     except Exception as e:
@@ -64,6 +67,7 @@ async def get_motivation():
 
 async def monitor_task(payload: MonitorPayload):
     result = await get_motivation()
+    print(result)
     data = {
         "message": result,
         "username": "Daily Motivation Bot",
