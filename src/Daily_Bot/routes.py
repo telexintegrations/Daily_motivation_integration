@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, BackgroundTasks, HTTPException, status
 import httpx
-from .schemas import MonitorPayload, AutomatePayload  # Ensure your schemas are properly defined
+from .schemas import MonitorPayload # Ensure your schemas are properly defined
 from croniter import croniter
 from datetime import datetime
 
