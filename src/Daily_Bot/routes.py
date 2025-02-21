@@ -32,7 +32,7 @@ def get_integration_json(request: Request):
                 "Easy Integration: Seamlessly integrates with Telex channels for hassle-free deployment.\nCustomizable Settings: Allows customization of delivery time intervals to fit team schedules."
             ],
             "integration_category": "Communication & Collaboration",
-            "author": "jeffmaine",
+            "author": "jeff maine",
             "settings": [
                 {
                     "label": "interval",
@@ -79,46 +79,3 @@ async def monitor_task(payload: MonitorPayload):
 def send_motivation(payload: MonitorPayload, background_tasks: BackgroundTasks):
     background_tasks.add_task(monitor_task, payload)
     return {"status": "accepted"}
-
-
-
-# @bot_router.get("/automate", status_code=status.HTTP_202_ACCEPTED)
-# async def hit_endpoint_at_cron(request: Request):
-#     cron_expression = "*/5 * * * *"
-#     print(type(cron_expression))
-#     now = datetime.now()
-#     cron = croniter(cron_expression, now)
-#     if cron.get_next(datetime) > datetime.now():
-#         data = {
-#                     "channel_id": "01950f92-160a-7aeb-a3b2-764c0cd03118",
-#                     "return_url": "https://ping.telex.im/v1/return/01950f92-160a-7aeb-a3b2-764c0cd03118",
-#                     "settings": [
-#                         {
-#                             "label": "time interval",
-#                             "type": "text",
-#                             "required": True,
-#                             "default": "* * * * *"
-#                         }
-#                     ]
-#                 }
-#         async with httpx.AsyncClient() as client:
-#             base_url = str(request.base_url).rstrip("/")
-#             await client.post(url=f"{base_url}/tick", json=data)
-
-#     return {"status": "accepted"}
-
-
-# # async def get_motivation():
-# #     quote_url = "https://api.quotable.io/random?tags=motivational"
-# #     try:
-# #         async with httpx.AsyncClient() as client:
-# #             result = await client.get(quote_url)
-# #             if result.status_code == 200:
-# #                 quote_data: dict = result.json()
-# #                 quote = quote_data.get(
-# #                     "content", "Stay positive and keep moving forward.")
-# #                 author = quote_data.get("authorSlug", "Unknown")
-# #                 return f"{quote} \n by {author}"
-# #             return "Error fetching daily quote."
-# #     except Exception as e:
-# #         return f"Error: {str(e)}"
