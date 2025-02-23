@@ -47,6 +47,7 @@ def get_integration_json(request: Request):
     }
 
 
+    
 cached_quote = None
 cache_expiry = None
 
@@ -56,12 +57,12 @@ async def get_motivation():
     if cached_quote and cache_expiry and datetime.now() < cache_expiry:
         return cached_quote
 
-    quote_url = "https://api.quotable.io/random?tags=motivational"
+    quote_url = "https://zenquotes.io/api/random/motivational"
     try:
         async with httpx.AsyncClient() as client:
             result = await client.get(quote_url)
             if result.status_code == 200:
-                quote_data: dict = await result.json()[0]
+                quote_data: dict = result.json()[0]
                 quote = quote_data.get("q", "Stay positive and keep moving forward.")
                 author = quote_data.get("a", "Unknown")
                 cached_quote = f"{quote} \n by {author}"
