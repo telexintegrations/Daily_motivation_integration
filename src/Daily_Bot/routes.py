@@ -66,7 +66,7 @@ async def get_motivation():
                 quote = quote_data.get("q", "Stay positive and keep moving forward.")
                 author = quote_data.get("a", "Unknown")
                 cached_quote = f"{quote} \n by {author}"
-                cache_expiry = datetime.now() + timedelta(minutes=1)
+                cache_expiry = datetime.now() + timedelta(minutes=5)
                 return cached_quote
             return "Error fetching daily quote."
         
