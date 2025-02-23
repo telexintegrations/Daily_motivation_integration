@@ -53,7 +53,7 @@ cache_expiry = None
 
 async def get_motivation():
     global cached_quote, cache_expiry
-
+    print("cached_quote:", cached_quote)
     if cached_quote and cache_expiry and datetime.now() < cache_expiry:
         return cached_quote
 
@@ -69,6 +69,7 @@ async def get_motivation():
                 cache_expiry = datetime.now() + timedelta(minutes=1)
                 return cached_quote
             return "Error fetching daily quote."
+        
     except Exception as e:
         return f"Error: {str(e)}"
 
@@ -76,7 +77,7 @@ async def get_motivation():
 
 async def monitor_task(payload: MonitorPayload):
     result = await get_motivation()
-    print(result)
+    print("result:", result)
     data = {
         "message": result,
         "username": "Daily Motivation Bot",
