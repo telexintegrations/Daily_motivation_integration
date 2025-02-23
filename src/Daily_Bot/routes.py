@@ -63,7 +63,7 @@ async def get_motivation():
         try:
             async with httpx.AsyncClient() as client:
                 result = await client.get(quote_url)
-
+                print("api quote hit")
                 if result.status_code == 200:
                     quote_data: dict = result.json()[0]
                     quote = quote_data.get("q", "Stay positive and keep moving forward.")
