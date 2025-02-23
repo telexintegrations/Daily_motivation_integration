@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request, BackgroundTasks, HTTPException, status
 import httpx
 from .schemas import MonitorPayload 
+from datetime import datetime, timedelta
 
 
 bot_router = APIRouter()
@@ -46,22 +47,30 @@ def get_integration_json(request: Request):
     }
 
 
+cached_quote = None
+cache_expiry = None
+
 async def get_motivation():
-    print("here")
-    quote_url = "https://zenquotes.io/api/random/motivational"
+    global cached_quote, cache_expiry
+
+    if cached_quote and cache_expiry and datetime.now() < cache_expiry:
+        return cached_quote
+
+    quote_url = "https://api.quotable.io/random?tags=motivational"
     try:
         async with httpx.AsyncClient() as client:
             result = await client.get(quote_url)
-            print("result")
             if result.status_code == 200:
-                quote_data: dict = result.json()[0]
-                quote = quote_data.get(
-                    "q", "Stay positive and keep moving forward.")
+                quote_data: dict = await result.json()[0]
+                quote = quote_data.get("q", "Stay positive and keep moving forward.")
                 author = quote_data.get("a", "Unknown")
-                return f"{quote} \n by {author}"
+                cached_quote = f"{quote} \n by {author}"
+                cache_expiry = datetime.now() + timedelta(minutes=5)
+                return cached_quote
             return "Error fetching daily quote."
     except Exception as e:
         return f"Error: {str(e)}"
+
 
 
 async def monitor_task(payload: MonitorPayload):
