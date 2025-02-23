@@ -20,7 +20,7 @@ def get_integration_json(request: Request):
             "descriptions": {
                 "app_name": "Daily Motivation Bot",
                 "app_description": "Daily Motivation Bot\nSends motivational quotes daily to inspire and uplift team members, helping to maintain a positive and productive work environment. The bot automatically fetches and delivers a new motivational quote each day, encouraging teamwork and boosting morale.",
-                "app_logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSowU4UV3Sncxajn1Smd8UMnTaN9Mm6mtk5NA&usqp=CAU",
+                "app_logo": "https://cdn-fkmoj.nitrocdn.com/xvpOGZRTxJUhXKufpOYIruQcRqtvAAQX/assets/images/optimized/rev-4e1f421/media.briantracy.com/blog/wp-content/uploads/2024/01/23111358/Quote-1.png",
                 "app_url": f"{base_url}",
                 "background_color": "#fff"
             },
@@ -84,8 +84,8 @@ async def monitor_task(payload: MonitorPayload):
     print("result:", result)
     data = {
         "message": result,
-        "username": "Daily Motivation Bot",
-        "event_name": "daily_motivation_event",
+        "username": "Daily Motivation",
+        "event_name": "Daily motivation",
         "status": "success"
     }
     async with httpx.AsyncClient() as client:
