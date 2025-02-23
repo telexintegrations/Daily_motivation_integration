@@ -53,14 +53,15 @@ cache_expiry = None
 
 async def get_motivation():
     global cached_quote, cache_expiry
-    print("cached_quote:", cached_quote)
     if cached_quote and cache_expiry and datetime.now() < cache_expiry:
+        print("cached_quote:", cached_quote)
         return cached_quote
 
     quote_url = "https://zenquotes.io/api/random/motivational"
     try:
         async with httpx.AsyncClient() as client:
             result = await client.get(quote_url)
+            print("quote api request hit")
             if result.status_code == 200:
                 quote_data: dict = result.json()[0]
                 quote = quote_data.get("q", "Stay positive and keep moving forward.")
